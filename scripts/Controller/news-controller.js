@@ -70,5 +70,54 @@ function addToBookMark() {
   //   console.log(this);
   const currentObject = this;
   const newsId = currentObject.getAttribute("news-id");
-  console.log(newsId);
+  // console.log(newsId);
+  operationOnNews.searchNews(newsId);
+  displayBookMarkedNews();
+}
+
+function displayBookMarkedNews() {
+  const bookMarkedNewsArray = operationOnNews.getNewsInBookMarkSection();
+  const bookMarkSection = document.getElementById("all-bookmark-news");
+  bookMarkSection.innerHTML = "";
+  for (let bookMarkedNews of bookMarkedNewsArray) {
+    // const li = document.createElement("li");
+    // li.innerText = `${bookMarkedNews.title}`;
+    // bookMarkSection.appendChild(li);
+    bookMarkedNewsCard(bookMarkedNews);
+  }
+}
+
+function bookMarkedNewsCard(bookMarkedNews) {
+  /*  <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Success card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div> */
+  const bookMarkSection = document.getElementById("all-bookmark-news");
+  // bookMarkSection.innerHTML = "";
+  const columnDiv = document.createElement("div");
+  columnDiv.className = "m-4 ";
+  const cardDiv = document.createElement("div");
+  cardDiv.className = "card    mb-3";
+  cardDiv.style.maxWidth = "18rem";
+  const cardHeader = document.createElement("div");
+  cardHeader.className = "card-header";
+  const cardBody = document.createElement("div");
+  cardBody.className = "card-body";
+  const h5 = document.createElement("h5");
+  h5.className = "card-title";
+  h5.innerText = bookMarkedNews.title;
+  cardBody.appendChild(h5);
+  const p = document.createElement("p");
+  p.className = "card-text";
+  cardBody.appendChild(p);
+  p.innerText = bookMarkedNews.description;
+  cardBody.appendChild(p);
+
+  cardDiv.appendChild(cardHeader);
+  cardDiv.appendChild(cardBody);
+  columnDiv.appendChild(cardDiv);
+  bookMarkSection.appendChild(columnDiv);
 }

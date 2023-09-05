@@ -2,7 +2,7 @@
 export default class News {
   constructor(id, name, author, title, description, urlToImage, url) {
     // this-keyword
-    // hold the current calling object refernce
+    // hold the current calling object reference
     this.id = id;
     this.name = name;
     this.author = author;
@@ -10,5 +10,6 @@ export default class News {
     this.description = description;
     this.urlToImage = urlToImage;
     this.url = url;
+    this.isBookMarked = false;
   }
 }
